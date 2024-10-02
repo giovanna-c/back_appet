@@ -29,7 +29,7 @@ const corsOptions = {
 
 dbConnect();
 
-app.use(cors(corsOptions));
+app.use(cors({origin: '*'}));
 app.use(bodyParser.json({ type: "application/json" }));
 
 app.get("/", function (req, res) {
