@@ -14,8 +14,8 @@ export const getSolicitacaoRouteHandler = async (req, res) => {
     const solicitacoesList = []; 
 
     for (const key in solicitacoes) {
-      const usuario = await userModel.find(solicitacoes[key].id_usuario);
-      const animal = await animalModel.find(solicitacoes[key].id_animal);
+      const usuario = await userModel.findById(solicitacoes[key].id_usuario);
+      const animal = await animalModel.findById(solicitacoes[key].id_animal);
 
       solicitacoesList.push({usuario: usuario.nome, animal: animal.nome, status: solicitacoes[key].status});
     }
