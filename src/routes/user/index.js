@@ -9,6 +9,10 @@ router.post("/register", async (req, res) => {
   await registerRouteHandler(req, res, nome, email, senha, telefone, tipo, id_ong);
 });
 
+router.post("/voluntarios", async (req, res) => {
+  await getUsersRouteHandler(req, res);
+});
+
 router.get('/', async (req, res) => {
   getUsersRouteHandler(req, res);
 });
