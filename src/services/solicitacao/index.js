@@ -6,12 +6,15 @@ import { animalModel } from "../../schemas/animal.schema.js";
 dotenv.config();
 
 export const getSolicitacaoRouteHandler = async (req, res) => {
-  const solicitacoes = await solicitacaoModel.find(req.body.data.attributes);
+  const solicitacoes = [];
+  if (req.body.data.attributes !== undefined) {
+    const solicitacoes = await solicitacaoModel.find(req.body.data.attributes);
+  }
 
   if (!solicitacoes) {
     res.status(400).json({error: 'Nenhuma solicitação encontrada'});
   } else {
-    const solicitacoesList = []; 
+    const solicitacoesList = [];
 
     for (const key in solicitacoes) {
       const usuario = await userModel.findById(solicitacoes[key].id_usuario);
