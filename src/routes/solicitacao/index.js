@@ -7,6 +7,10 @@ router.get("/", (req, res) => {
   getSolicitacaoRouteHandler(req, res);
 });
 
+router.post("/filter", async (req, res) => {
+  await getSolicitacaoRouteHandler(req, res);
+});
+
 router.post("/", async (req, res) => {
   const { id_usuario, id_animal, status } = req.body.data.attributes;
   await registerSolicitacaoRouteHandler(req, res,id_usuario, id_animal, status);
