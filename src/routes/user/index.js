@@ -9,7 +9,7 @@ router.post("/register", async (req, res) => {
   await registerRouteHandler(req, res, nome, email, senha, telefone, tipo, id_ong);
 });
 
-router.post("/voluntarios", async (req, res) => {
+router.post("/filter", async (req, res) => {
   await getUsersRouteHandler(req, res);
 });
 

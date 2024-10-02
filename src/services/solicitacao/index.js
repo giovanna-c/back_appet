@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
 import { solicitacaoModel } from "../../schemas/solicitacao.schema.js";
+import { userModel } from "../../schemas/user.schema.js";
+import { animalModel } from "../../schemas/animal.schema.js";
 
 dotenv.config();
 
@@ -9,7 +11,16 @@ export const getSolicitacaoRouteHandler = async (req, res) => {
   if (!solicitacoes) {
     res.status(400).json({error: 'Nenhuma solicitação encontrada'});
   } else {
-    res.send(solicitacoes)
+    const solicitacoesList = []; 
+
+    for (const key in solicitacoes) {
+      const usuario = await userModel.find(solicitacoes[key].id_usuario);
+      const animal = await animalModel.find(solicitacoes[key].id_animal);
+
+      solicitacoesList.push({usuario: usuario.nome, animal: animal.nome, status: solicitacoes[key].status});
+    }
+
+    res.send(solicitacoesList)
   }
 };
 
